@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<script defer src="./login.js"></script>
+		<script src="https://www.google.com/recaptcha/api.js?render=6LemHlMgAAAAAGD8ffNCg2Je52M2sJsuLQU5xkH3"></script>
+
+		<style>
+			div {
+				margin: 20px;
+				padding: 20px;
+			}
+			label {
+				width: 100px;
+				display: inline-block;
+				margin: 10px;
+			}
+			.inputSuccess {
+				background-color: rgb(29, 101, 0);
+				border: 2px solid green;
+			}
+			.inputError {
+				background-color: rgb(101, 0, 0);
+				border: 2px solid red;
+			}
+			.grecaptcha-badge {
+				visibility: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="signIn" style="background-color: yellow">
+			<h2>login:</h2>
+			<div>
+				<label>Email:</label>
+				<input
+					type="email"
+					id="emailSignUp"
+					placeholder="Email"
+					value="hosni.marco@gmail.com"
+				/><br />
+				<label>Password:</label>
+				<input
+					type="password"
+					id="passwordSignUp"
+					placeholder="Password"
+					value="xxxx"
+				/><br />
+				<!-- type="hidden" -->
+				<input id="g-recaptcha-response" name="g-recaptcha-response" />
+			</div>
+			<button id="buttonRegistro" disabled>Sign In</button>
+		</div>
+	</body>
+</html>
