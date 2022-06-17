@@ -13,10 +13,7 @@ switch ($_POST['api']) {
         echo json_encode($myObj);
         break;
     case "logOut":
-        // checkCaptcha(sanitize($_POST['captcha']), $myObj);
-        // if (isset($myObj->success)) {
         logOutUser(sanitize($_POST['nombre']), $myObj);
-        // }
         echo json_encode($myObj);
         break;
     default:
