@@ -1,8 +1,7 @@
 <?php
 // mysqli('sql4.freemysqlhosting.net', 'sql4499632', 'SqpEq4ZEvZ', 'sql4499632');
-
+require_once $_SERVER["DOCUMENT_ROOT"] . "config/admin.php";
 date_default_timezone_set('Europe/Madrid');
-define("RECAPTCHA_V3_SECRET_KEY", '6LemHlMgAAAAAL9dq7CKAZhtH-VGp_-460Em0rQU');
 $myObj = new stdClass();
 
 switch ($_POST['action']) {
@@ -26,7 +25,7 @@ function checkEmail($email, $myObj)
         $myObj->error = "Please insert a correct email.";
         exit;
     }
-    $conn = new mysqli("sql4.freemysqlhosting.net", "sql4499632", "SqpEq4ZEvZ", "sql4499632");
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
     $sql = "SELECT email FROM usuarios_temp WHERE email='" . $email . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
@@ -58,7 +57,7 @@ function validateCaptcha($email, $name, $phone, $password, $captcha, $myObj)
 }
 function saveDDBB($email, $name, $phone, $password, $myObj)
 {
-    $conn = new mysqli('sql4.freemysqlhosting.net', 'sql4499632', 'SqpEq4ZEvZ', 'sql4499632');
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
     $sql = "INSERT INTO usuarios_temp (email, nombre, phone, password) VALUES ('$email',' $name', '$phone', '" . md5($password) . "');";
     if ($conn->query($sql) === TRUE) {
         // $last_id = $conn->insert_id;
@@ -73,7 +72,7 @@ function saveDDBB($email, $name, $phone, $password, $myObj)
 function userToken($email, $myObj)
 {
     $usuario = new stdClass();
-    $conn = new mysqli('sql4.freemysqlhosting.net', 'sql4499632', 'SqpEq4ZEvZ', 'sql4499632');
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
     $sql = "SELECT  * FROM usuarios_temp WHERE email='" . $email . "' LIMIT 1;"; // ORDER BY reg_date ASC LIMIT 1
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {

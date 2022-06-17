@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set('Europe/Madrid');
-define("RECAPTCHA_V3_SECRET_KEY", '6LemHlMgAAAAAL9dq7CKAZhtH-VGp_-460Em0rQU');
+require_once $_SERVER["DOCUMENT_ROOT"] . "config/admin.php";
+
 $myObj = new stdClass();
 
 switch ($_POST['api']) {
@@ -51,7 +52,7 @@ function checkCaptcha($captcha, $myObj)
 function loginUser($email, $password, $myObj)
 {
     $usuario = new stdClass();
-    $conn = new mysqli("sql4.freemysqlhosting.net", "sql4499632", "SqpEq4ZEvZ", "sql4499632");
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
     $sql = "SELECT nombre FROM usuarios WHERE email='" . $email . "' && password='" . md5($password) . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
@@ -76,7 +77,7 @@ function loginUser($email, $password, $myObj)
 function logOutUser($nombre, $myObj)
 {
     $usuario = new stdClass();
-    $conn = new mysqli("sql4.freemysqlhosting.net", "sql4499632", "SqpEq4ZEvZ", "sql4499632");
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
     $sql = "SELECT * FROM usuarios WHERE nombre='" . $nombre . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
