@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dashboard</title>
+		<link rel="stylesheet" href="./dashboard.css" />
+		<script defer src="./dashboard.js"></script>
+	</head>
+	<body>
+		<h1>TODO LIST</h1>
+		<ul>
+			<li>
+				<input
+					class="input_list"
+					type="text"
+					id="task"
+					placeholder="Nombre tarea"
+				/>
+				<input
+					class="input_list"
+					type="text"
+					id="lenguage"
+					placeholder="Lenguaje"
+				/>
+				<textarea
+					oninput="auto_grow(this)"
+					id="textarea"
+					cols="30"
+					rows="1"
+					placeholder="description"
+				></textarea>
+				<button class="add_button" id="add">ADD</button>
+			</li>
+		</ul>
+		<div>
+			<ul></ul>
+		</div>
+	</body>
+</html>

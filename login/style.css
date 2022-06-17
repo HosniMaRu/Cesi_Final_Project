@@ -1,0 +1,20 @@
+div {
+	margin: 20px;
+	padding: 20px;
+}
+label {
+	width: 100px;
+	display: inline-block;
+	margin: 10px;
+}
+.inputSuccess {
+	background-color: rgb(29, 101, 0);
+	border: 2px solid green;
+}
+.inputError {
+	background-color: rgb(101, 0, 0);
+	border: 2px solid red;
+}
+.grecaptcha-badge {
+	visibility: hidden;
+}

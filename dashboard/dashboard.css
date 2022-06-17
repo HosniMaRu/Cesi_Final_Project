@@ -1,0 +1,27 @@
+h1 {
+	text-align: center;
+}
+textarea {
+	resize: none;
+	overflow: hidden;
+	max-height: 100px;
+	width: 48%;
+}
+ul {
+	width: 80%;
+	margin: 5vh auto;
+	display: flex;
+	list-style-type: none;
+}
+ul li {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+ul li input,
+.add_button {
+	height: fit-content;
+}
+.input_list {
+	width: 20%;
+}
