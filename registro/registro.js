@@ -2,8 +2,6 @@
 const button = document.getElementById("send");
 document.getElementById("send").addEventListener("click", registrarUsuario);
 grecaptcha.ready(function () {
-	// do request for recaptcha token
-	// response is promise with passed token
 	grecaptcha
 		.execute("6LemHlMgAAAAAGD8ffNCg2Je52M2sJsuLQU5xkH3", {
 			action: "validate_captcha",
