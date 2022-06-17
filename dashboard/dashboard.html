@@ -10,32 +10,68 @@
 	</head>
 	<body>
 		<h1>TODO LIST</h1>
-		<ul>
-			<li>
-				<input
-					class="input_list"
-					type="text"
-					id="task"
-					placeholder="Nombre tarea"
-				/>
-				<input
-					class="input_list"
-					type="text"
-					id="lenguage"
-					placeholder="Lenguaje"
-				/>
-				<textarea
-					oninput="auto_grow(this)"
-					id="textarea"
-					cols="30"
-					rows="1"
-					placeholder="description"
-				></textarea>
-				<button class="add_button" id="add">ADD</button>
-			</li>
-		</ul>
+		<div class="input_container">
+			<input
+				class="input_list"
+				type="text"
+				id="task"
+				placeholder="Nombre tarea"
+			/>
+			<input
+				class="input_list"
+				type="text"
+				id="lenguage"
+				placeholder="Lenguaje"
+			/>
+			<textarea
+				oninput="auto_grow(this)"
+				id="textarea"
+				cols="30"
+				rows="1"
+				placeholder="description"
+			></textarea>
+			<button class="add_button" id="add">ADD</button>
+		</div>
 		<div>
-			<ul></ul>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Tarea</th>
+						<th>Lenguaje</th>
+						<th>Descripcion</th>
+						<th>Modificar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Refactor Dashboard</td>
+						<td>HTML</td>
+						<td>
+							refactorizar el html del dashboard para hacerme a la idea de como
+							quedara el resultado final
+						</td>
+						<td class="modify_button">MODIFY</td>
+					</tr>
+					<tr>
+						<td>Refactor Dashboard</td>
+						<td>HTML</td>
+						<td>
+							refactorizar el html del dashboard para hacerme a la idea de como
+							quedara el resultado final
+						</td>
+						<td class="modify_button">MODIFY</td>
+					</tr>
+					<tr>
+						<td>Refactor Dashboard</td>
+						<td>HTML</td>
+						<td>
+							refactorizar el html del dashboard para hacerme a la idea de como
+							quedara el resultado final
+						</td>
+						<td class="modify_button">MODIFY</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</body>
 </html>
