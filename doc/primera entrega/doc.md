@@ -31,7 +31,7 @@ Compuesto por, inicio, loguin, registro, dashboard y detalle
 
 - Enciclopedia:
 
-  No tengo el material necessario para hacer una enciclopedia.
+  Me parece una buena idea pero organizar una buena base de datos para la enciclopedia me llevaria demasiado tiempo.
 
 - Cartelera:
 
@@ -39,13 +39,13 @@ Compuesto por, inicio, loguin, registro, dashboard y detalle
 
 - Chat:
 
-  -Por falta de tiempo y conocimiento.
+  -Me gustaria hacer un chat interactivo pero no estoy seguro de poder realizar este proyecto con el tiempo que tengo ya que necessitaria bastante tiempo para la investigación.
 
 - Mailing:
 
-  El sistema de mailing ya lo quiero incluir con el login.
+  Un sistema de mailing donde puedes enviar plantillas de mails a todos los usuarios. Pero ya aplicare este concepto en mi proyecto.
 
-# Nombre del proyecto: **TODO LIST**
+# Nombre del proyecto: **POSIT**
 
 ## Descripcion del proyecto:
 
@@ -53,23 +53,25 @@ En este proyecto podremos segun nuestro login pintar una lista de tareas pendien
 
 ## Descripcion de las carcteristicas
 
-Una web que permite a los usuarios, visualizar una lista de tareas pendientes, y actualizarla segun la necesidad. El usuario tendra que registrarse y podra volver a loguear para ver sus tareas.
+Una web que permite a los usuarios, visualizar una lista de tareas pendientes, y actualizarla segun la necesidad. El usuario tendra que registrarse y podra volver a loguear para ver sus tareas. Para registrar una tarea tendras 3 inputs, el primero para el titulo de la tarea, el segundo para que tipo de lenguaje de programación usaras y el ultimo un text area donde podras poner la descripcion de la tarea.
 
 ## Viabilidad:
 
 ### Usuarios potenciales
 
-Cualquier persona que necesite de un editor de tareas.
+Los usuarios potenciales son aquellos porgramadores que necessiten anotar tareas pendientes.
 
 ### Mercado a cubrir
 
-Usuarios de pc.
+Programadores que necessiten de una tabla donde apuntar todas sus tareas pendientes.
 
-## Documentacion tecnisca
+## Documentacion tecnica
 
 ### Base
 
-Se crearan 5 html y estos tendran **cargas estaticas** para pasar de una plantilla visual a otra
+Se crearan 4 html y estos tendran **cargas estaticas** para pasar de una plantilla visual a otra
+
+1 html con **carga dinamica** que cargara la tabla listando las tareas.
 Utilizare CSS para el dieño.
 Utilizare JS para la parte de cliente.
 Utilizare PHP para la parte de servidor.
@@ -78,45 +80,55 @@ Utilizare PHPmyAdmin como BBDD.
 
 ### Herramientas
 
-Se usara Git para llevar el control de versiones, se usara la web phpmyadmin.co para tener una BBDD conectada constantemente, se usara Heroku para tener un servidor de php.
+Se usara GitHub para llevar el control de versiones, se usara la web phpmyadmin.co para tener una BBDD conectada constantemente, se usara Heroku para tener un servidor de php.
+Se usara las librerias de AJAX
 
 ## Diagrama de grantt (se puede entregar fuera del md)
 
 Documento aparte
+[Diagrama Grantt](./Diagrama_de_Grantt.png)
 
 ## wireframes
 
-Documento aparte
+![index](./wireframes/Wireframe-INDEX.png)
+![login](./wireframes/Wireframe-LOGIN.png)
+![register](./wireframes/Wireframe-REGISTER.png)
+![dashboard](./wireframes/Wireframe-DASHBOARD.png)
+![detalle](./wireframes/Wireframe-DETALLE.png)
 
 ## Paths
 
-Documento aparte
+![path](./Path%20-%20Proyecto%20final.png)
 
 ## Mokups
 
+![Mockup](./mockup.png)
+
 ## Casos de uso
+
+- Registrar usuario
+  -Añadir nombre, telefono, email y contraseña.
 
 - Registrar tarea
   - Tarea pendiente
   - Tipo de lenguaje a tratar
   - Descripcion
-  - Contraseña
 - Modificar tarea
 - Eliminar tarea
 - Visualizar tarea
-  ## explicaopn de los casos de uso
-- ### Caso de uso "Registrar tarea"
+  ### explicaopn de los casos de uso
+- #### Caso de uso "Registrar tarea"
 
   1. Añadir tarea a realizar, tipo de lenguaje de programacion requerido de la tarea y descripcion de la tarea.
 
-- ### Caso de uso "Modificar tarea"
+- #### Caso de uso "Modificar tarea"
 
   1. Modificar la tarea pendiente, modificar estilo de texto.
 
-- ### Caso de uso "Eliminar tarea"
+- #### Caso de uso "Eliminar tarea"
 
   1. Eliminar la tarea finalizada.
 
-- ### Caso de uso "Visualizar tarea"
+- #### Caso de uso "Visualizar tarea"
 
   1. Visualizar en una ventana aparte una tarea en concreto.
