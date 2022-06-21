@@ -1,4 +1,6 @@
 "use strict";
+document.getElementById("goHome").addEventListener("click", goHome);
+
 const boton = document.getElementById("buttonRegistro");
 
 boton.addEventListener("click", registrarUsuario);
@@ -30,7 +32,9 @@ function checkRecaptcha() {
 	}
 	return false;
 }
-
+function goHome() {
+	window.location.href = "../index.html";
+}
 function registrarUsuario() {
 	let inputEmail_valor = inputEmail.value;
 	let inputPassword_valor = inputPassword.value;

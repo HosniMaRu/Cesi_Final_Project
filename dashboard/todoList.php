@@ -25,7 +25,7 @@ function checkConnection()
 }
 function addTableToDDBB()
 {
-    $conn = new mysqli('localhost', 'root', '', 'sql4499632');
+    $conn = new mysqli('localhost', 'root', '', 'sql4499632'); //id autoincremento
     $sql = 'CREATE TABLE IF NOT EXISTS posit (email VARCHAR(50) NOT NULL, tarea VARCHAR(30) NOT NULL, lenguaje VARCHAR(30) NOT NULL, descripcion VARCHAR(300) NOT NULL,, reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)';
     if ($conn->query($sql) === TRUE) {
         return true;

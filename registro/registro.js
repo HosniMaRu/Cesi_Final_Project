@@ -1,4 +1,5 @@
 "use strict";
+document.getElementById("goHome").addEventListener("click", goHome);
 const button = document.getElementById("send");
 document.getElementById("send").addEventListener("click", registrarUsuario);
 grecaptcha.ready(function () {
@@ -23,19 +24,26 @@ function checkRecaptcha() {
 }
 
 ///////
-
+const validateEmail = (email) => {
+	return String(email)
+		.toLowerCase()
+		.match(
+			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		);
+};
+const validatePhone = (phone) => {
+	return phone.match(/\d/g).length === 9;
+};
 function registrarUsuario() {
 	let email_value = document.getElementById("email").value;
 	let name_value = document.getElementById("name").value;
 	let phone_value = document.getElementById("phone").value;
 	let password_value = document.getElementById("password").value;
 	let captcha_value = document.getElementById("g-recaptcha-response").value;
-	let checkEmail = email_value.length > 3 || isNaN(email_value);
+	let checkEmail = validateEmail(email_value);
 	let checkName = name_value.length > 3 || isNaN(name_value);
-	let checkPhone = phone_value.length == 9 || !isNaN(phone_value);
+	let checkPhone = validatePhone(phone_value);
 	let checkPassword = password_value.length > 3 || isNaN(password_value);
-	// console.log("-" + name_value);
-	// throw new Error();
 	if (
 		checkEmail &&
 		checkName &&
@@ -123,7 +131,6 @@ function colorInput(checkEmail, checkName, checkPhone, checkPassword) {
 		document.getElementById("password").classList.add("input_error");
 	}
 }
-document.getElementById("goHome").addEventListener("click", goHome);
 function goHome() {
 	window.location.href = "../index.html";
 }
