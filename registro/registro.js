@@ -34,6 +34,8 @@ function registrarUsuario() {
 	let checkName = name_value.length > 3 || isNaN(name_value);
 	let checkPhone = phone_value.length == 9 || !isNaN(phone_value);
 	let checkPassword = password_value.length > 3 || isNaN(password_value);
+	// console.log("-" + name_value);
+	// throw new Error();
 	if (
 		checkEmail &&
 		checkName &&
@@ -68,6 +70,7 @@ function registrarUsuario() {
 						console.log(response.success);
 						console.log(response.userToken);
 						console.log(response.sendEmail);
+						console.log(response);
 						showMessage(name_value);
 					}
 					colorInput(checkEmail, checkName, checkPhone, checkPassword);
@@ -119,4 +122,8 @@ function colorInput(checkEmail, checkName, checkPhone, checkPassword) {
 		document.getElementById("password").classList.remove("input_success");
 		document.getElementById("password").classList.add("input_error");
 	}
+}
+document.getElementById("goHome").addEventListener("click", goHome);
+function goHome() {
+	window.location.href = "../index.html";
 }

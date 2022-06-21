@@ -9,7 +9,7 @@ function runRegister() {
 
 let slideIndex = 1;
 showSlides(slideIndex);
-
+setInterval(plusSlides(1), 1000); //no va
 // Next/previous controls
 function plusSlides(n) {
 	showSlides((slideIndex += n));

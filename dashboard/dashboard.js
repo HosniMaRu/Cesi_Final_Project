@@ -8,7 +8,6 @@ function getData() {
 	let lenguageValue = document.getElementById("lenguage").value;
 	let textareaValue = document.getElementById("textarea").value;
 	console.log(taskValue, lenguageValue, textareaValue);
-
 	$.ajax({
 		url: "./todoList.php",
 		type: "POST",
@@ -17,6 +16,7 @@ function getData() {
 			task: taskValue,
 			lang: lenguageValue,
 			texarea: textareaValue,
+			email: getParam("email"),
 		},
 		dataType: "json",
 		success: function (response) {
@@ -38,4 +38,10 @@ function getData() {
 			console.warn(error);
 		},
 	});
+}
+
+function getParam(paramName) {
+	let queryString = window.location.search;
+	let urlParams = new URLSearchParams(queryString);
+	let email = urlParams.get(paramName);
 }

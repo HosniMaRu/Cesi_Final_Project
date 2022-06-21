@@ -108,13 +108,7 @@ function crearCookie(user) {
 	document.cookie = "nombre=" + user.nombre + "; " + expires;
 	document.cookie = "token=" + user.token + "; " + expires;
 
-	// console.log(getCookie("email"));
-	// console.log(getCookie("nombre"));
-	// console.log(getCookie("token"));
-
-	window.location.replace(
-		"../registro_php/dashboard/dashboard.html?nombre=" + user.nombre
-	);
+	window.location.replace("../dashboard/dashboard.html?email=" + user.email);
 }
 
 function getCookie(cname) {

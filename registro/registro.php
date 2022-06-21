@@ -1,6 +1,5 @@
 <?php
-// mysqli('sql4.freemysqlhosting.net', 'sql4499632', 'SqpEq4ZEvZ', 'sql4499632');
-require_once $_SERVER["DOCUMENT_ROOT"] . "config/admin.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/config/admin.php";
 date_default_timezone_set('Europe/Madrid');
 $myObj = new stdClass();
 
@@ -26,7 +25,7 @@ function checkEmail($email, $myObj)
         exit;
     }
     $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
-    $sql = "SELECT email FROM usuarios_temp WHERE email='" . $email . "' ;";
+    $sql = "SELECT email FROM usuarios_temp WHERE email='" . trim($email) . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
         while ($row = $result->fetch_assoc()) {
@@ -44,10 +43,10 @@ function validateCaptcha($email, $name, $phone, $password, $captcha, $myObj)
     );
     $response = json_decode($response);
     if ($response->success === false) {
-        //Do something with error
+        echo $response->success;
     } else {
         if ($response->success == true && $response->score > 0.5) {
-            saveDDBB($email, $name, $phone, $password, $myObj);
+            saveDDBB(sanitize(trim($email)), sanitize(trim($name)), sanitize(trim($phone)), sanitize(trim($password)), $myObj);
         } else if ($response->success == true && $response->score <= 0.5) {
             echo "Human?<br>";
         } else {
@@ -60,12 +59,10 @@ function saveDDBB($email, $name, $phone, $password, $myObj)
     $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
     $sql = "INSERT INTO usuarios_temp (email, nombre, phone, password) VALUES ('$email',' $name', '$phone', '" . md5($password) . "');";
     if ($conn->query($sql) === TRUE) {
-        // $last_id = $conn->insert_id;
         userToken($email, $myObj);
         $myObj->success = "Usuario guardado en la BBDD";
     } else {
         $myObj->success = "Usuario guardado en la BBDD";
-        // echo 'ERROR: insert table "usuarios"' . $conn->error . '<br>';
     }
     $conn->close();
 }
@@ -73,7 +70,7 @@ function userToken($email, $myObj)
 {
     $usuario = new stdClass();
     $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
-    $sql = "SELECT  * FROM usuarios_temp WHERE email='" . $email . "' LIMIT 1;"; // ORDER BY reg_date ASC LIMIT 1
+    $sql = "SELECT  * FROM usuarios_temp WHERE email='" . $email . "' LIMIT 1;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
         while ($row = $result->fetch_assoc()) {
@@ -92,65 +89,45 @@ function userToken($email, $myObj)
     } else {
         echo 'asd';
     }
-    // $conn->close();
 }
 
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 function sendMail($usuario, $token_user, $myObj)
 {
-    //MAIL
-    $HostSMTP = 'smtp.gmail.com'; // Set the SMTP server to send through
-    $ContrasenaDelCorreo = 'oosnbszczvcuueyo'; // SMTP password
-    $SendFromEMAIL = 'hosni.marco@gmail.com'; // SMTP username
+    $HostSMTP = 'smtp.gmail.com';
+    $ContrasenaDelCorreo = 'oosnbszczvcuueyo';
+    $SendFromEMAIL = 'hosni.marco@gmail.com';
     $QuienLoEnviaNAME = 'moderator';
     $SendFromEMAILreply = 'hosni.marco@gmail.com';
     $QuienResponderNAME = 'moderator';
-    $PortSMTP = 465; // TCP port to connect to
-    //$PortSMTP = 587; // TCP port to connect to
-    //
+    $PortSMTP = 465;
+
     $SentToEmail = $usuario->email;
     $Asunto = "ninguno";
-    $BodyHTML = "<h1>Bienvenido al TODO LIST " . $usuario->name . " Hax click en el link para loguearte." . "</h1><br><a href='http://" . $_SERVER['HTTP_HOST'] . "/AJAX/registro_php/new_user.php?id=" . $usuario->id . "&clave=" . $token_user . "'><b>" . $token_user . "</b></a>";
+    $BodyHTML = "<h1>Bienvenido al TODO LIST " . $usuario->name . " Hax click en el link para loguearte." . "</h1><br><a href='http://" . $_SERVER['HTTP_HOST'] . "/registro/new_user.php?id=" . $usuario->id . "&clave=" . $token_user . "'><b>" . $token_user . "</b></a>";
     $BodyNOHTML = "hola que tal?";
 
-    //Load Composer's autoloader
     require realpath($_SERVER["DOCUMENT_ROOT"]) . '/vendor/autoload.php';
 
-    //Instantiation and passing `true` enables exceptions
     $mail = new PHPMailer(true);
 
     try {
-        //Server settings
-        //$mail->SMTPDebug = SMTP::DEBUG_CONNECTION;                      //Enable verbose debug output
         $mail->SMTPDebug = SMTP::DEBUG_OFF;
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = $HostSMTP;                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = $SendFromEMAIL;                     //SMTP username
-        $mail->Password   = $ContrasenaDelCorreo;                               //SMTP password
-        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+        $mail->isSMTP();
+        $mail->Host       = $HostSMTP;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $SendFromEMAIL;
+        $mail->Password   = $ContrasenaDelCorreo;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = $PortSMTP;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        $mail->Port       = $PortSMTP;
 
-        //Recipients
         $mail->setFrom($SendFromEMAIL, $QuienLoEnviaNAME);
-        //$mail->addAddress($SentToEmail, 'Joe User');     //Add a recipient
-        $mail->addAddress($SentToEmail);               //Name is optional
+        $mail->addAddress($SentToEmail);
         $mail->addReplyTo($SendFromEMAIL, $QuienLoEnviaNAME);
-        //$mail->addCC('cc@example.com');
-        //$mail->addBCC('bcc@example.com');
-
-        //Attachments
-        //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        //mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->isHTML(true);
         $mail->Subject = $Asunto;
         $mail->Body    = $BodyHTML;
         $mail->AltBody = $BodyNOHTML;

@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Europe/Madrid');
-require_once $_SERVER["DOCUMENT_ROOT"] . "config/admin.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/config/admin.php";
 
 $myObj = new stdClass();
 
@@ -28,7 +28,7 @@ function sanitize($texto)
 }
 function checkCaptcha($captcha, $myObj)
 {
-    $response = file_get_contents(
+    $response = file_GET_contents(
         "https://www.google.com/recaptcha/api/siteverify?secret=" . RECAPTCHA_V3_SECRET_KEY . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']
     );
     $response = json_decode($response);
@@ -54,16 +54,12 @@ function loginUser($email, $password, $myObj)
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
         while ($row = $result->fetch_assoc()) {
-            // echo 'asd';
             $usuario->email = $email;
-            $usuario->nombre = $row['nombre'];
-
+            $usuario->nombre = trim($row['nombre']);
             $usuario->token = md5(time() . "-" . $usuario->email);
             $sql_a = "UPDATE usuarios SET token='" . $usuario->token . "' WHERE email='" . $email . "' ;";
             $result_a = $conn->query($sql_a);
-
             $myObj->usuario = json_encode($usuario);
-            //$myObj->error = null;
             break;
         }
     } else {
@@ -81,7 +77,7 @@ function logOutUser($nombre, $myObj)
         while ($row = $result->fetch_assoc()) {
             $usuario->token = $row['token'];
             $usuario->email = $row['email'];
-            $usuario->nombre = $row['nombre'];
+            $usuario->nombre = trim($row['nombre']);
             $myObj->dataUser = $usuario;
 
             $sql_update = "UPDATE usuarios SET token='' WHERE nombre='" . $nombre . "' ;";

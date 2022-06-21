@@ -20,12 +20,18 @@
 			<input type="tel" name="phone" id="phone" />
 			<label for="password">Password</label>
 			<input type="password" name="password" id="password" />
-			<button class="form_container--button" id="send">Send</button>
+			<div class="button_row">
+				<button class="form_container--button" id="send">Send</button>
+				<button class="form_container--button" id="goHome">Back</button>
+			</div>
 		</div>
 		<div id="registerSuccess"></div>
 		<form id="form_id" method="post" action="#">
-			<!-- type="hidden" -->
-			<input id="g-recaptcha-response" name="g-recaptcha-response" />
+			<input
+				id="g-recaptcha-response"
+				class="captcha"
+				name="g-recaptcha-response"
+			/>
 		</form>
 	</body>
 </html>

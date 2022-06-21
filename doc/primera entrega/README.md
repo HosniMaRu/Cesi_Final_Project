@@ -90,11 +90,11 @@ Documento aparte
 
 ## wireframes
 
-![index](./wireframes/Wireframe-INDEX.png)
-![login](./wireframes/Wireframe-LOGIN.png)
-![register](./wireframes/Wireframe-REGISTER.png)
-![dashboard](./wireframes/Wireframe-DASHBOARD.png)
-![detalle](./wireframes/Wireframe-DETALLE.png)
+![index](./Wireframe-INDEX.png)
+![login](./Wireframe-LOGIN.png)
+![register](./Wireframe-REGISTER.png)
+![dashboard](./Wireframe-DASHBOARD.png)
+![detalle](./Wireframe-DETALLE.png)
 
 ## Paths
 
