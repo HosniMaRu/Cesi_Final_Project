@@ -24,7 +24,7 @@ function checkEmail($email, $myObj)
         $myObj->error = "Please insert a correct email.";
         exit;
     }
-    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
     $sql = "SELECT email FROM usuarios_temp WHERE email='" . trim($email) . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
@@ -56,8 +56,8 @@ function validateCaptcha($email, $name, $phone, $password, $captcha, $myObj)
 }
 function saveDDBB($email, $name, $phone, $password, $myObj)
 {
-    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
-    $sql = "INSERT INTO usuarios_temp (email, nombre, phone, password) VALUES ('$email',' $name', '$phone', '" . md5($password) . "');";
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
+    $sql = 'INSERT INTO usuarios_temp (email, nombre, phone, password) VALUES ("' . $email . '","' . $name . '", "' . $phone . '", "' . md5($password) . '");';
     if ($conn->query($sql) === TRUE) {
         userToken($email, $myObj);
         $myObj->success = "Usuario guardado en la BBDD";
@@ -69,7 +69,7 @@ function saveDDBB($email, $name, $phone, $password, $myObj)
 function userToken($email, $myObj)
 {
     $usuario = new stdClass();
-    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
     $sql = "SELECT  * FROM usuarios_temp WHERE email='" . $email . "' LIMIT 1;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {

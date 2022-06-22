@@ -49,7 +49,7 @@ function checkCaptcha($captcha, $myObj)
 function loginUser($email, $password, $myObj)
 {
     $usuario = new stdClass();
-    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
     $sql = "SELECT nombre FROM usuarios WHERE email='" . $email . "' && password='" . md5($password) . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
@@ -70,7 +70,8 @@ function loginUser($email, $password, $myObj)
 function logOutUser($nombre, $myObj)
 {
     $usuario = new stdClass();
-    $conn = new mysqli(MYSQL_SERVER, MYSQL_USER, MYSQL_PASSWORD, MYSQL_USER);
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
+
     $sql = "SELECT * FROM usuarios WHERE nombre='" . $nombre . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {

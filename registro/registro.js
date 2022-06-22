@@ -57,7 +57,7 @@ function registrarUsuario() {
 			data: {
 				action: "checkEmail",
 				email: email_value,
-				name: name_value,
+				name: name_value.trim(),
 				phone: phone_value,
 				password: password_value,
 				captcha: captcha_value,

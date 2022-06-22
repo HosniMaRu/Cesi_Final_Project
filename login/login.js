@@ -112,7 +112,7 @@ function crearCookie(user) {
 	document.cookie = "nombre=" + user.nombre + "; " + expires;
 	document.cookie = "token=" + user.token + "; " + expires;
 
-	window.location.replace("../dashboard/dashboard.html?email=" + user.email);
+	window.location.replace("../dashboard/dashboard.html?name=" + user.nombre);
 }
 
 function getCookie(cname) {

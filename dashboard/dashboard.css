@@ -53,3 +53,6 @@ textarea {
 	cursor: pointer;
 	background-color: rgb(151 151 151);
 }
+.width_table {
+	width: 50px;
+}
