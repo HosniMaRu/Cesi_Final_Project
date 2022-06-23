@@ -6,7 +6,6 @@ document.getElementById("carrousel").addEventListener("click", () => {
 let interval = setInterval(() => {
 	plusSlides(1);
 }, 3000);
-showSlides(slideIndex);
 function runLog() {
 	window.location.replace("./login/login.html");
 }
@@ -40,3 +39,5 @@ function showSlides(n) {
 	slides[slideIndex - 1].style.display = "block";
 	dots[slideIndex - 1].className += " active";
 }
+
+showSlides(slideIndex);

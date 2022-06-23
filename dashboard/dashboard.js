@@ -3,6 +3,14 @@ function auto_grow(element) {
 	element.style.height = element.scrollHeight - 4 + "px";
 }
 getData();
+document
+	.getElementById("textarea")
+	.addEventListener("keypress", function (event) {
+		if (event.key === "Enter") {
+			event.preventDefault();
+			document.getElementById("add").click();
+		}
+	});
 document.getElementById("goHome").addEventListener("click", goHome);
 document.getElementById("add").addEventListener("click", addData);
 function addData() {

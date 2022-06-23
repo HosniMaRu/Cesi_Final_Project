@@ -2,6 +2,14 @@
 document.getElementById("goHome").addEventListener("click", goHome);
 const button = document.getElementById("send");
 document.getElementById("send").addEventListener("click", registrarUsuario);
+document
+	.getElementById("password")
+	.addEventListener("keypress", function (event) {
+		if (event.key === "Enter") {
+			event.preventDefault();
+			button.click();
+		}
+	});
 grecaptcha.ready(function () {
 	grecaptcha
 		.execute("6LemHlMgAAAAAGD8ffNCg2Je52M2sJsuLQU5xkH3", {

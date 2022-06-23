@@ -5,6 +5,13 @@ boton.addEventListener("click", registrarUsuario);
 const inputEmail = document.getElementById("emailSignUp");
 const inputPassword = document.getElementById("passwordSignUp");
 
+inputPassword.addEventListener("keypress", function (event) {
+	if (event.key === "Enter") {
+		event.preventDefault();
+		document.getElementById("buttonRegistro").click();
+	}
+});
+
 grecaptcha.ready(function () {
 	grecaptcha
 		.execute("6LemHlMgAAAAAGD8ffNCg2Je52M2sJsuLQU5xkH3", {
