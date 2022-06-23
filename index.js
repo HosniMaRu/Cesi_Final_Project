@@ -1,11 +1,20 @@
 document.getElementById("logPage").addEventListener("click", runLog);
 document.getElementById("registerPage").addEventListener("click", runRegister);
 document.getElementById("carrousel").addEventListener("click", () => {
-	clearInterval(interval);
+	if (booleanCarrousel) {
+		clearInterval(interval);
+		booleanCarrousel = false;
+	} else {
+		interval = setInterval(() => {
+			plusSlides(1);
+		}, 3000);
+		booleanCarrousel = true;
+	}
 });
 let interval = setInterval(() => {
 	plusSlides(1);
 }, 3000);
+let booleanCarrousel = true;
 function runLog() {
 	window.location.replace("./login/login.html");
 }
