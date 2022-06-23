@@ -114,6 +114,10 @@ Documento aparte
   - Descripcion
 - Eliminar tarea
   ### explicaopn de los casos de uso
+- #### Caso de uso "Registrar usuario"
+
+  1. Añadir nombre, email, telefono y password para registrarse. Si la informacion es correcta enviara un email de confirmacion a la misma cuenta de email y asi el usuario estara registrado.
+
 - #### Caso de uso "Registrar tarea"
 
   1. Añadir tarea a realizar, tipo de lenguaje de programacion requerido de la tarea y descripcion de la tarea.
