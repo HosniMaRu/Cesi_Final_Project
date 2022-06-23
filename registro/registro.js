@@ -22,7 +22,6 @@ function checkRecaptcha() {
 	return false;
 }
 
-///////
 const validateEmail = (email) => {
 	return String(email)
 		.toLowerCase()
@@ -70,8 +69,12 @@ function registrarUsuario() {
 				} else {
 					if ("error" in response) {
 						console.log("ERROR");
+						console.log(response);
+						document.getElementById("errorMessage").innerHTML =
+							"Email already exists.";
 						checkEmail = false;
 					} else {
+						document.getElementById("errorMessage").innerHTML = "";
 						console.log("OK");
 						checkEmail = true;
 						console.log(response.success);

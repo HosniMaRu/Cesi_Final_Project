@@ -3,12 +3,12 @@ function auto_grow(element) {
 	element.style.height = element.scrollHeight - 4 + "px";
 }
 getData();
+document.getElementById("goHome").addEventListener("click", goHome);
 document.getElementById("add").addEventListener("click", addData);
 function addData() {
 	let taskValue = document.getElementById("task").value;
 	let lenguageValue = document.getElementById("lenguage").value;
 	let textareaValue = document.getElementById("textarea").value;
-	console.log(getParam("name"));
 	$.ajax({
 		url: "./todoList.php",
 		type: "POST",
@@ -17,7 +17,7 @@ function addData() {
 			task: taskValue,
 			lang: lenguageValue,
 			textarea: textareaValue,
-			name: getParam("name"),
+			id: getParam("id"),
 		},
 		dataType: "json",
 		success: function (response) {
@@ -43,13 +43,14 @@ function addData() {
 		},
 	});
 }
+
 function getData() {
 	$.ajax({
 		url: "./todoList.php",
 		type: "POST",
 		data: {
 			api: "get",
-			name: getParam("name"),
+			id: getParam("id"),
 		},
 		dataType: "json",
 		success: function (response) {
@@ -78,14 +79,13 @@ function getData() {
 }
 
 function deleteRow(id) {
-	console.log(id);
 	$.ajax({
 		url: "./todoList.php",
 		type: "POST",
 		data: {
 			api: "delete",
 			idrow: id,
-			name: getParam("name"),
+			id: getParam("id"),
 		},
 		dataType: "json",
 		success: function (response) {
@@ -144,4 +144,7 @@ function getParam(paramName) {
 	let queryString = window.location.search;
 	let urlParams = new URLSearchParams(queryString);
 	return urlParams.get(paramName);
+}
+function goHome() {
+	window.location.href = "../index.html";
 }

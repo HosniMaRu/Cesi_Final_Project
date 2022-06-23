@@ -97,6 +97,7 @@ function coloresCampos(emailBoolean, passwordBoolean) {
 }
 
 function crearCookie(user) {
+	console.log(user);
 	var exdays = 30;
 	var d = new Date();
 	d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -105,7 +106,7 @@ function crearCookie(user) {
 	document.cookie = "nombre=" + user.nombre + "; " + expires;
 	document.cookie = "token=" + user.token + "; " + expires;
 
-	window.location.replace("../dashboard/dashboard.html?name=" + user.nombre);
+	window.location.replace("../dashboard/dashboard.html?id=" + user.id);
 }
 
 function getCookie(cname) {

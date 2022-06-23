@@ -1,6 +1,10 @@
 h1 {
 	text-align: center;
 }
+.logOut {
+	width: 100px;
+	font-size: small;
+}
 textarea {
 	resize: none;
 	overflow: hidden;

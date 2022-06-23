@@ -52,6 +52,13 @@ function loginUser($email, $password, $myObj)
             $usuario->email = $email;
             $usuario->nombre = trim($row['nombre']);
             $usuario->token = md5(time() . "-" . $usuario->email);
+            $sql_list = "SELECT id FROM listas WHERE tablename='" . $usuario->nombre . "' ;";
+            $resultList = $conn->query($sql_list);
+            if ($resultList->num_rows == 1) {
+                while ($row = $resultList->fetch_assoc()) {
+                    $usuario->id = $row['id'];
+                }
+            }
             $sql_a = "UPDATE usuarios SET token='" . $usuario->token . "' WHERE email='" . $email . "' ;";
             $result_a = $conn->query($sql_a);
             $myObj->usuario = json_encode($usuario);
@@ -74,6 +81,7 @@ function logOutUser($nombre, $myObj)
             $usuario->email = $row['email'];
             $usuario->nombre = trim($row['nombre']);
             $myObj->dataUser = $usuario;
+
             $sql_update = "UPDATE usuarios SET token='' WHERE nombre='" . $nombre . "' ;";
             $conn->query($sql_update);
             break;

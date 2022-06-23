@@ -5,7 +5,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/config/admin.php";
 switch ($_POST['api']) {
     case 'add':
         if (checkConnection()) {
-            insertDataList(selectIdList());
+            insertDataList($_POST['id']);
             getList();
         }
         break;
@@ -25,27 +25,13 @@ switch ($_POST['api']) {
 }
 function checkConnection()
 {
-    $conn = new mysqli('localhost', 'root', '');
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD);
     if ($conn->connect_error) {
         return false;
     } else {
         return true;
     }
     $conn->close();
-}
-function selectIdList()
-{
-    $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
-    $sql_id = "SELECT id FROM listas WHERE tablename='" . $_POST['name'] . "';";
-    $result = $conn->query($sql_id);
-    $usuario = new stdClass();
-    if ($result->num_rows == 1) {
-        while ($row = $result->fetch_assoc()) {
-            $usuario->id = $row['id'];
-        }
-    }
-    $conn->close();
-    return $usuario->id;
 }
 function insertDataList($idList)
 {
@@ -61,7 +47,7 @@ function insertDataList($idList)
 function getList()
 {
     $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
-    $sql = "SELECT * FROM listaobjetos WHERE idlist='" . selectIdList() . "';";
+    $sql = "SELECT * FROM listaobjetos WHERE idlist='" . $_POST['id'] . "';";
     $result = $conn->query($sql);
 
     $taskArray = [];
@@ -78,7 +64,6 @@ function getList()
         $task = 'empty';
         array_push($taskArray, $task);
     } else {
-        echo 'OUTTTTTTTTT';
         echo $result->num_rows;
     }
     $conn->close();

@@ -25,7 +25,7 @@ function checkEmail($email, $myObj)
         exit;
     }
     $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
-    $sql = "SELECT email FROM usuarios_temp WHERE email='" . trim($email) . "' ;";
+    $sql = "SELECT email FROM usuarios WHERE email='" . trim($email) . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
         while ($row = $result->fetch_assoc()) {
