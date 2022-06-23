@@ -1,5 +1,12 @@
 document.getElementById("logPage").addEventListener("click", runLog);
 document.getElementById("registerPage").addEventListener("click", runRegister);
+document.getElementById("carrousel").addEventListener("click", () => {
+	clearInterval(interval);
+});
+let interval = setInterval(() => {
+	plusSlides(1);
+}, 3000);
+showSlides(slideIndex);
 function runLog() {
 	window.location.replace("./login/login.html");
 }
@@ -7,8 +14,6 @@ function runRegister() {
 	window.location.replace("./registro/registro.html");
 }
 let slideIndex = 1;
-showSlides(slideIndex);
-setInterval(plusSlides(1), 1000);
 function plusSlides(n) {
 	showSlides((slideIndex += n));
 }
