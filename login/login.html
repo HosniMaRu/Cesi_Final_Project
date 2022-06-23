@@ -8,20 +8,16 @@
 		<link rel="stylesheet" href="./style.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 		<script defer src="./login.js"></script>
+		<link rel="stylesheet" href="../style.css" />
 		<script src="https://www.google.com/recaptcha/api.js?render=6LemHlMgAAAAAGD8ffNCg2Je52M2sJsuLQU5xkH3"></script>
 	</head>
 	<body>
-		<div id="signIn" class="login_container">
+		<div id="main-section	" class="login_container">
 			<h2>LOGIN</h2>
 			<div class="login_content">
 				<div class="input_log">
 					<label>Email:</label>
-					<input
-						type="email"
-						id="emailSignUp"
-						placeholder="Email"
-						value="hosni.marco@gmail.com"
-					/>
+					<input type="email" id="emailSignUp" placeholder="Email" value="" />
 				</div>
 				<div class="input_log">
 					<label>Password:</label>
@@ -29,12 +25,14 @@
 						type="password"
 						id="passwordSignUp"
 						placeholder="Password"
-						value="xxxx"
+						value=""
 					/>
 				</div>
 			</div>
-			<button id="buttonRegistro" disabled>Sign In</button>
-			<button class="form_container--button" id="goHome">Back</button>
+			<div class="log_buttons">
+				<button class="buttons" id="buttonRegistro" disabled>Sign In</button>
+				<button class="buttons" id="goHome">Back</button>
+			</div>
 		</div>
 		<input
 			id="g-recaptcha-response"

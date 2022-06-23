@@ -4,10 +4,8 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/config/admin.php";
 if (isset($_GET['id']) && isset($_GET['clave'])) {
     $id = $_GET['id'];
     $clave = $_GET['clave'];
-
     $usuario = new stdClass();
     $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
-
     $sql = "SELECT * FROM usuarios_temp WHERE id='" . $id . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
@@ -25,7 +23,6 @@ if (isset($_GET['id']) && isset($_GET['clave'])) {
         echo '<br>clave sha: ' . $sha1;
         if ($clave == $sha1) {
             insertUser($usuario);
-            // insertListTable($sha1);
         }
     } else {
         echo "Error: id not found.";
@@ -36,13 +33,11 @@ if (isset($_GET['id']) && isset($_GET['clave'])) {
 function insertUser($user)
 {
     $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
-
     $sql = "INSERT INTO usuarios ( email,nombre,phone,password,reg_date) VALUES ('" . $user->email . "','" . sanitize($user->nombre) . "'," . $user->phone . ",'" . $user->password . "','" . date("Y-m-d H:i:s") . "');";
     if ($conn->query($sql) === TRUE) {
         echo "<br>OK";
         $sql_a = "DELETE FROM usuarios_temp WHERE email='" . $user->email . "' || reg_date <= NOW() - INTERVAL 1 DAY;";
         $conn->query($sql_a);
-        //
         $sql_id = "SELECT id FROM usuarios WHERE email='" . $user->email . "';";
         $result = $conn->query($sql_id);
         $usuario = new stdClass();

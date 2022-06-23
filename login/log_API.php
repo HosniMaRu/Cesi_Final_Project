@@ -1,9 +1,7 @@
 <?php
 date_default_timezone_set('Europe/Madrid');
 require_once $_SERVER["DOCUMENT_ROOT"] . "/config/admin.php";
-
 $myObj = new stdClass();
-
 switch ($_POST['api']) {
     case "loginUser":
         checkCaptcha(sanitize($_POST['captcha']), $myObj);
@@ -21,7 +19,6 @@ switch ($_POST['api']) {
         break;
 }
 
-
 function sanitize($texto)
 {
     return htmlentities(strip_tags($texto), ENT_QUOTES, 'UTF-8');
@@ -33,11 +30,9 @@ function checkCaptcha($captcha, $myObj)
     );
     $response = json_decode($response);
     if ($response->success === false) {
-        //Do something with error
         $myObj->error = "no recaptcha.";
     } else {
         if ($response->success == true && $response->score > 0.5) {
-            // echo 'correct'; passar el objeto del usuario
             $myObj->success = true;
         } else if ($response->success == true && $response->score <= 0.5) {
             $myObj->error = "Human?<br>";
@@ -71,7 +66,6 @@ function logOutUser($nombre, $myObj)
 {
     $usuario = new stdClass();
     $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
-
     $sql = "SELECT * FROM usuarios WHERE nombre='" . $nombre . "' ;";
     $result = $conn->query($sql);
     if ($result->num_rows == 1) {
@@ -80,7 +74,6 @@ function logOutUser($nombre, $myObj)
             $usuario->email = $row['email'];
             $usuario->nombre = trim($row['nombre']);
             $myObj->dataUser = $usuario;
-
             $sql_update = "UPDATE usuarios SET token='' WHERE nombre='" . $nombre . "' ;";
             $conn->query($sql_update);
             break;

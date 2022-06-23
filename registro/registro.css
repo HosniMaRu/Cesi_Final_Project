@@ -20,19 +20,10 @@ h2 {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	width: 30%;
+	width: 80%;
 	padding: 2vh;
 }
-.form_container--button {
-	display: flex;
-	padding: 2vh;
-	border-radius: 5px;
-	color: aliceblue;
-	background-color: black;
-	margin: 3vh;
-	justify-content: center;
-	cursor: pointer;
-}
+
 .form_container input {
 	width: 100%;
 	max-width: 20vw;

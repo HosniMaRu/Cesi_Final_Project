@@ -107,13 +107,10 @@ function sendMail($usuario, $token_user, $myObj)
 
     $SentToEmail = $usuario->email;
     $Asunto = "ninguno";
-    $BodyHTML = "<h1>Bienvenido al TODO LIST " . $usuario->name . " Hax click en el link para loguearte." . "</h1><br><a href='http://" . $_SERVER['HTTP_HOST'] . "/registro/new_user.php?id=" . $usuario->id . "&clave=" . $token_user . "'><b>" . $token_user . "</b></a>";
+    $BodyHTML = "<h1>Welcome to Posit!! " . $usuario->name . " Haz click en el link para loguearte." . "</h1><br><a href='http://" . $_SERVER['HTTP_HOST'] . "/registro/new_user.php?id=" . $usuario->id . "&clave=" . $token_user . "'><b>" . $token_user . "</b></a>";
     $BodyNOHTML = "hola que tal?";
-
     require realpath($_SERVER["DOCUMENT_ROOT"]) . '/vendor/autoload.php';
-
     $mail = new PHPMailer(true);
-
     try {
         $mail->SMTPDebug = SMTP::DEBUG_OFF;
         $mail->isSMTP();
@@ -123,7 +120,6 @@ function sendMail($usuario, $token_user, $myObj)
         $mail->Password   = $ContrasenaDelCorreo;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = $PortSMTP;
-
         $mail->setFrom($SendFromEMAIL, $QuienLoEnviaNAME);
         $mail->addAddress($SentToEmail);
         $mail->addReplyTo($SendFromEMAIL, $QuienLoEnviaNAME);
@@ -131,7 +127,6 @@ function sendMail($usuario, $token_user, $myObj)
         $mail->Subject = $Asunto;
         $mail->Body    = $BodyHTML;
         $mail->AltBody = $BodyNOHTML;
-
         $mail->send();
         $myObj->sendEmail =  'Message has been sent';
     } catch (Exception $e) {

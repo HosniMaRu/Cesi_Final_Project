@@ -14,6 +14,12 @@ switch ($_POST['api']) {
             getList();
         }
         break;
+    case 'delete':
+        if (checkConnection()) {
+            deleteRow($_POST['idrow']);
+            getList();
+        }
+        break;
     default:
         break;
 }
@@ -60,17 +66,28 @@ function getList()
 
     $taskArray = [];
     if ($result->num_rows > 0) {
-        // echo 'INNNNNNNNN';
         while ($row = $result->fetch_assoc()) {
             $task = new stdClass();
             $task->task = $row['task'];
             $task->lenguage = $row['lenguage'];
             $task->descripcion = $row['descripcion'];
+            $task->id = $row['id'];
             array_push($taskArray, $task);
         }
+    } else if ($result->num_rows == 0) {
+        $task = 'empty';
+        array_push($taskArray, $task);
     } else {
         echo 'OUTTTTTTTTT';
+        echo $result->num_rows;
     }
     $conn->close();
     echo json_encode($taskArray);
+}
+function deleteRow($id)
+{
+    $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
+    $sql_a = "DELETE FROM listaobjetos WHERE id='" . $id . "';";
+    $conn->query($sql_a);
+    $conn->close();
 }

@@ -1,22 +1,16 @@
 "use strict";
 document.getElementById("goHome").addEventListener("click", goHome);
-
 const boton = document.getElementById("buttonRegistro");
-
 boton.addEventListener("click", registrarUsuario);
 const inputEmail = document.getElementById("emailSignUp");
 const inputPassword = document.getElementById("passwordSignUp");
 
-// setTimeout(checkRecaptcha, 2000);
 grecaptcha.ready(function () {
-	// do request for recaptcha token
-	// response is promise with passed token
 	grecaptcha
 		.execute("6LemHlMgAAAAAGD8ffNCg2Je52M2sJsuLQU5xkH3", {
 			action: "validate_captcha",
 		})
 		.then(function (token) {
-			// add token value to form
 			document.getElementById("g-recaptcha-response").value = token;
 			checkRecaptcha();
 		});
@@ -48,7 +42,6 @@ function registrarUsuario() {
 	if (inputPassword_valor == "" || !isNaN(inputPassword_valor)) {
 		passwordBoolean = false;
 	}
-
 	$.ajax({
 		url: "./log_API.php",
 		type: "POST",
@@ -130,5 +123,3 @@ function getCookie(cname) {
 	}
 	return "";
 }
-
-//

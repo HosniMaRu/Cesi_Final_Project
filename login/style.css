@@ -4,6 +4,9 @@
 .login_container h2 {
 	font-size: 25px;
 }
+.log_buttons {
+	display: flex;
+}
 .login_content {
 	margin-bottom: 5vh;
 }

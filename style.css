@@ -25,10 +25,10 @@
 	margin-bottom: 5vh;
 	font-size: 2vw;
 }
-.log-buttons {
+.buttons {
 	padding: 2vh 2vw;
 	width: 15vw;
-	margin: 0 5vw;
+	margin: 3vh 5vw;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -39,7 +39,7 @@
 	cursor: pointer;
 	font-size: 2vw;
 }
-.log-buttons:hover {
+.buttons:hover {
 	background-color: grey;
 }
 footer {
@@ -51,7 +51,7 @@ footer {
 	left: 0;
 	width: 100%;
 	margin-top: 10vh;
-	font-size: 2vw;
+	font-size: small;
 }
 .slideshow-container {
 	max-width: 1000px;
