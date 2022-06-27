@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Detalle</title>
+		<link rel="stylesheet" href="../style.css" />
+		<link rel="stylesheet" href="detalle.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<script defer>
+			$(function () {
+				$("#includedContent").load("../footer/footer.html");
+			});
+		</script>
+		<script defer src="detalle.js"></script>
+	</head>
+	<body>
+		<button class="buttons logOut" id="goHome">LogOut</button>
+
+		<h1 id="test">Modify element</h1>
+		<div class="input_container modify_container">
+			<div>
+				<label for="task">Task:</label>
+				<input
+					class="input_list"
+					type="text"
+					oninput="inputMaxLength(this)"
+					id="task"
+					maxlength="17"
+					autofocus
+				/>
+			</div>
+			<span class="task"
+				>No puedes añadir mas. Numero maximo de caracteres 17</span
+			>
+			<div>
+				<label for="lenguage">Lenguage:</label>
+				<input
+					class="input_list"
+					type="text"
+					oninput="inputMaxLength(this)"
+					id="lenguage"
+					maxlength="6"
+				/>
+			</div>
+			<span class="lenguage"
+				>No puedes añadir mas. Numero maximo de caracteres 6</span
+			>
+
+			<div>
+				<label for="description">Description:</label>
+				<textarea
+					class="input_list"
+					oninput="auto_grow(this)"
+					id="textarea"
+					cols="30"
+					rows="1"
+				></textarea>
+			</div>
+			<div>
+				<button class="modify_button" id="modify">MODIFY</button>
+				<button class="modify_button" id="back">BACK</button>
+			</div>
+		</div>
+		<footer id="includedContent"></footer>
+	</body>
+</html>

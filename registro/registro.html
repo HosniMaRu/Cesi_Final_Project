@@ -8,6 +8,11 @@
 		<link rel="stylesheet" href="../style.css" />
 		<link rel="stylesheet" href="./registro.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<script defer>
+			$(function () {
+				$("#includedContent").load("../footer/footer.html");
+			});
+		</script>
 		<script src="https://www.google.com/recaptcha/api.js?render=6LemHlMgAAAAAGD8ffNCg2Je52M2sJsuLQU5xkH3"></script>
 		<script defer src="./registro.js"></script>
 	</head>
@@ -35,5 +40,6 @@
 				name="g-recaptcha-response"
 			/>
 		</form>
+		<footer id="includedContent"></footer>
 	</body>
 </html>

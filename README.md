@@ -4,6 +4,10 @@
 
     - Pagina web en la que te registras y puedes añadir tareas pendientes y eliminarlas.
 
+## Demo
+
+    - https://cesifinalproject.herokuapp.com/
+
 ## Lenguajes usados
 
     - HTML
@@ -11,16 +15,16 @@
     - JS
     - PHP
     - JQUERY
+    - AJAX
 
 ## Base de datos
 
     - phpmyadmin
-    - SQL
-    -Nombre DDBB: pbd
-    -Tabla usuarios_temp. Donde guardamos los usuarios registrados.
-    -Tabla usuarios. Registra los usuarios que confirman el mail de confirmación.
-    -Tabla listas. Asigna id a los usuarios y recoge la id de sus elementos guardados.(las tareas).
-    -Tabla listaobjetos. Guarda las tareas correspondientes de cada usuario.
+    - Nombre DDBB: pbd
+    - Tabla usuarios_temp. Donde guardamos los usuarios registrados.
+    - Tabla usuarios. Registra los usuarios que confirman el mail de confirmación.
+    - Tabla listas. Asigna id a los usuarios y recoge la id de sus elementos guardados.(las tareas).
+    - Tabla listaobjetos. Guarda las tareas correspondientes de cada usuario.
 
     Todas las tablas son de relacion 1 : 1
 

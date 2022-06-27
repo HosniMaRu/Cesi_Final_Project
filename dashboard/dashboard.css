@@ -5,6 +5,9 @@ h1 {
 	width: 100px;
 	font-size: small;
 }
+.table_container {
+	margin-bottom: 25vh;
+}
 textarea {
 	resize: none;
 	overflow: hidden;
@@ -60,9 +63,11 @@ textarea {
 	background-color: #0415aa;
 	color: white;
 }
-.delete_button {
+.table_button {
 	cursor: pointer;
 	background-color: rgb(151 151 151);
+	width: 10px;
+	text-align: center;
 }
 .width_table {
 	width: 50px;

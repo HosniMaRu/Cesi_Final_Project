@@ -121,26 +121,73 @@ function deleteRow(id) {
 		},
 	});
 }
+function modifyRow(id) {
+	$.ajax({
+		url: "./todoList.php",
+		type: "POST",
+		data: {
+			api: "get",
+			idrow: id,
+			id: getParam("id"),
+		},
+		dataType: "json",
+		success: function (response) {
+			if (response == 0) {
+				console.warn(response);
+			} else {
+				if ("error" in response) {
+					console.warn("ERROR");
+					console.log(response);
+				} else {
+					console.warn("OK");
+					console.log(response);
+					window.location.replace(
+						"../detalle/detalle.html?id=" +
+							response[0].id +
+							"&idlist=" +
+							getParam("id")
+					);
+				}
+			}
+		},
+		error: function (error) {
+			console.warn("ERROR: ");
+			console.warn(error);
+		},
+	});
+}
 function printTable(response) {
 	let tbody = document.getElementById("tbody");
 	let tr = document.createElement("tr");
+
 	let tdTask = document.createElement("td");
 	tdTask.innerHTML = response.task;
 	tr.appendChild(tdTask);
+
 	let tdLenguage = document.createElement("td");
 	tdLenguage.innerHTML = response.lenguage;
 	tr.appendChild(tdLenguage);
+
 	let tdDescripcion = document.createElement("td");
 	tdDescripcion.innerHTML = response.descripcion;
 	tdDescripcion.classList.add("input_desc");
 	tr.appendChild(tdDescripcion);
+
+	let tdModify = document.createElement("td");
+	tdModify.innerHTML = "MODIFY";
+	tdModify.addEventListener("click", () => {
+		modifyRow(response.id);
+	});
+	tdModify.classList.add("table_button");
+	tr.appendChild(tdModify);
+
 	let tdDelete = document.createElement("td");
 	tdDelete.innerHTML = "DELETE";
 	tdDelete.addEventListener("click", () => {
 		deleteRow(response.id);
 	});
 
-	tdDelete.classList.add("delete_button");
+	tdDelete.classList.add("table_button");
 	tr.appendChild(tdDelete);
 
 	tbody.appendChild(tr);
