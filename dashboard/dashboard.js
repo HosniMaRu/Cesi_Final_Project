@@ -201,5 +201,45 @@ function getParam(paramName) {
 	return urlParams.get(paramName);
 }
 function goHome() {
-	window.location.href = "../index.html";
+	$.ajax({
+		url: "../login/logApi.php",
+		type: "POST",
+		data: {
+			api: "logOut",
+			nombre: getParam("nombre"),
+		},
+		dataType: "json",
+		success: function (response) {
+			console.log(response);
+			if (response == 0) {
+				console.warn(response);
+			} else {
+				console.log(response);
+				if ("error" in response) {
+					console.warn("ERROR");
+					console.log(response);
+				} else {
+					console.warn("OK");
+					console.log(response);
+					console.log("response");
+					deleteCookie();
+				}
+			}
+		},
+		error: function (error) {
+			console.warn("ERROR: ");
+			console.warn(error);
+		},
+	});
+}
+function deleteCookie() {
+	document.cookie =
+		"email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/login;";
+	document.cookie =
+		"nombre=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/login;";
+	document.cookie =
+		"token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/login;";
+	window.location.replace(
+		"../dashboard/dashboard.html?id=" + user.id + "nombre=" + user.nombre
+	);
 }

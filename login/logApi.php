@@ -1,29 +1,22 @@
 <?php
-echo '111111111';
 date_default_timezone_set('Europe/Madrid');
 require_once $_SERVER["DOCUMENT_ROOT"] . "/config/admin.php";
 $myObj = new stdClass();
 switch ($_POST['api']) {
     case "loginUser":
-        echo '2222222';
         checkCaptcha(sanitize($_POST['captcha']), $myObj);
         if (isset($myObj->success)) {
-            echo '3333333333';
             loginUser(sanitize($_POST['email']), sanitize($_POST['password']), $myObj);
-            echo '2222';
         }
         echo json_encode($myObj);
-        echo '3333';
         break;
     case "logOut":
         logOutUser(sanitize($_POST['nombre']), $myObj);
-        echo json_encode($myObj);
         break;
     default:
         $myObj->error = "error en el switchCase";
         break;
 }
-echo '4444';
 
 function sanitize($texto)
 {
@@ -53,26 +46,19 @@ function loginUser($email, $password, $myObj)
     $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
     $sql = "SELECT nombre FROM usuarios WHERE email='" . $email . "' && password='" . md5($password) . "' ;";
     $result = $conn->query($sql);
-    echo '444444';
 
     if ($result->num_rows == 1) {
-        echo '55555';
         while ($row = $result->fetch_assoc()) {
-            echo '66666';
             $usuario->email = $email;
             $usuario->nombre = trim($row['nombre']);
             $usuario->token = md5(time() . "-" . $usuario->email);
             $sql_list = "SELECT id FROM listas WHERE tablename='" . $usuario->nombre . "' ;";
             $resultList = $conn->query($sql_list);
             if ($resultList->num_rows == 1) {
-                echo '77777';
                 while ($row = $resultList->fetch_assoc()) {
-                    echo '88888';
                     $usuario->id = $row['id'];
                 }
-                echo '9999';
             }
-            echo '0000';
             $sql_a = "UPDATE usuarios SET token='" . $usuario->token . "' WHERE email='" . $email . "' ;";
             $result_a = $conn->query($sql_a);
             $myObj->usuario = json_encode($usuario);
@@ -80,7 +66,6 @@ function loginUser($email, $password, $myObj)
     } else {
         echo "Error: user not found.";
     }
-    echo '1111';
     $conn->close();
 }
 function logOutUser($nombre, $myObj)
@@ -98,6 +83,7 @@ function logOutUser($nombre, $myObj)
 
             $sql_update = "UPDATE usuarios SET token='' WHERE nombre='" . $nombre . "' ;";
             $conn->query($sql_update);
+            echo json_encode($usuario);
             break;
         }
     } else {

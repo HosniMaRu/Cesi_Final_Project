@@ -114,7 +114,9 @@ function crearCookie(user) {
 	document.cookie = "nombre=" + user.nombre + "; " + expires;
 	document.cookie = "token=" + user.token + "; " + expires;
 
-	window.location.replace("../dashboard/dashboard.html?id=" + user.id);
+	window.location.replace(
+		"../dashboard/dashboard.html?id=" + user.id + "&nombre=" + user.nombre
+	);
 }
 
 function getCookie(cname) {
