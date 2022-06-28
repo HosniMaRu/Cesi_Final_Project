@@ -64,6 +64,8 @@ AJAX
 
 ## Base de datos
 
+[BBDD](./doc/pbd.sql) - Export de la base de datos: phpMyAdmin SQL Dump
+
     - phpmyadmin
     - Nombre DDBB: pbd
     - Tabla usuarios_temp. Donde guardamos los usuarios registrados.
