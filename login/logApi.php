@@ -10,9 +10,10 @@ switch ($_POST['api']) {
         if (isset($myObj->success)) {
             echo '3333333333';
             loginUser(sanitize($_POST['email']), sanitize($_POST['password']), $myObj);
-            echo '99999';
+            echo '2222';
         }
         echo json_encode($myObj);
+        echo '3333';
         break;
     case "logOut":
         logOutUser(sanitize($_POST['nombre']), $myObj);
@@ -22,7 +23,7 @@ switch ($_POST['api']) {
         $myObj->error = "error en el switchCase";
         break;
 }
-echo '000000';
+echo '4444';
 
 function sanitize($texto)
 {
@@ -69,15 +70,17 @@ function loginUser($email, $password, $myObj)
                     echo '88888';
                     $usuario->id = $row['id'];
                 }
+                echo '9999';
             }
+            echo '0000';
             $sql_a = "UPDATE usuarios SET token='" . $usuario->token . "' WHERE email='" . $email . "' ;";
             $result_a = $conn->query($sql_a);
             $myObj->usuario = json_encode($usuario);
-            break;
         }
     } else {
         echo "Error: user not found.";
     }
+    echo '1111';
     $conn->close();
 }
 function logOutUser($nombre, $myObj)
