@@ -50,7 +50,7 @@ function registrarUsuario() {
 		passwordBoolean = false;
 	}
 	$.ajax({
-		url: "./log_API.php",
+		url: "./logApi.php",
 		type: "POST",
 		data: {
 			api: "loginUser",
@@ -60,6 +60,7 @@ function registrarUsuario() {
 		},
 		dataType: "json",
 		success: function (response) {
+			console.log(response);
 			if (response == 0) {
 				console.warn(response);
 			} else {

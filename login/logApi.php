@@ -3,11 +3,12 @@ echo '111111111111111111';
 date_default_timezone_set('Europe/Madrid');
 require_once $_SERVER["DOCUMENT_ROOT"] . "/config/admin.php";
 $myObj = new stdClass();
-echo '2222222222222222222222222';
 switch ($_POST['api']) {
     case "loginUser":
+        echo '2222222222222222222222222';
         checkCaptcha(sanitize($_POST['captcha']), $myObj);
         if (isset($myObj->success)) {
+            echo '33333333333333333333333333';
             loginUser(sanitize($_POST['email']), sanitize($_POST['password']), $myObj);
         }
         echo json_encode($myObj);
@@ -20,7 +21,7 @@ switch ($_POST['api']) {
         $myObj->error = "error en el switchCase";
         break;
 }
-echo '33333333333333333333';
+echo '444444444444444444444444444444';
 function sanitize($texto)
 {
     return htmlentities(strip_tags($texto), ENT_QUOTES, 'UTF-8');
