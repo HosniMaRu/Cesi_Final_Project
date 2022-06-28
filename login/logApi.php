@@ -1,15 +1,16 @@
 <?php
-echo '111111111111111111';
+echo '111111111';
 date_default_timezone_set('Europe/Madrid');
 require_once $_SERVER["DOCUMENT_ROOT"] . "/config/admin.php";
 $myObj = new stdClass();
 switch ($_POST['api']) {
     case "loginUser":
-        echo '2222222222222222222222222';
+        echo '2222222';
         checkCaptcha(sanitize($_POST['captcha']), $myObj);
         if (isset($myObj->success)) {
-            echo '33333333333333333333333333';
+            echo '3333333333';
             loginUser(sanitize($_POST['email']), sanitize($_POST['password']), $myObj);
+            echo '99999';
         }
         echo json_encode($myObj);
         break;
@@ -21,7 +22,8 @@ switch ($_POST['api']) {
         $myObj->error = "error en el switchCase";
         break;
 }
-echo '444444444444444444444444444444';
+echo '000000';
+
 function sanitize($texto)
 {
     return htmlentities(strip_tags($texto), ENT_QUOTES, 'UTF-8');
@@ -50,15 +52,21 @@ function loginUser($email, $password, $myObj)
     $conn = new mysqli(MYSQL_SERVER, MYSQL_DDBB, MYSQL_PASSWORD, MYSQL_TABLE);
     $sql = "SELECT nombre FROM usuarios WHERE email='" . $email . "' && password='" . md5($password) . "' ;";
     $result = $conn->query($sql);
+    echo '444444';
+
     if ($result->num_rows == 1) {
+        echo '55555';
         while ($row = $result->fetch_assoc()) {
+            echo '66666';
             $usuario->email = $email;
             $usuario->nombre = trim($row['nombre']);
             $usuario->token = md5(time() . "-" . $usuario->email);
             $sql_list = "SELECT id FROM listas WHERE tablename='" . $usuario->nombre . "' ;";
             $resultList = $conn->query($sql_list);
             if ($resultList->num_rows == 1) {
+                echo '77777';
                 while ($row = $resultList->fetch_assoc()) {
+                    echo '88888';
                     $usuario->id = $row['id'];
                 }
             }
