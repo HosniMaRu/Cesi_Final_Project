@@ -59,6 +59,7 @@ function modifyData() {
 				} else {
 					console.warn("OK");
 					console.log(response);
+					goBack();
 				}
 			}
 		},
@@ -92,5 +93,9 @@ function getParam(paramName) {
 	return urlParams.get(paramName);
 }
 function goBack() {
-	window.location.href = "../dashboard/dashboard.html?id=" + getParam("idlist");
+	window.location.href =
+		"../dashboard/dashboard.html?id=" +
+		getParam("idlist") +
+		"&nombre=" +
+		getParam("nombre");
 }

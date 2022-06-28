@@ -23,6 +23,7 @@ textarea {
 }
 .input_desc {
 	width: 300px;
+	max-width: 500px;
 	word-wrap: break-word;
 }
 .input_task {

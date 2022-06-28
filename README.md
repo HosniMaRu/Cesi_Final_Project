@@ -2,7 +2,7 @@
 
 ## Descripcion
 
-    - Pagina web en la que te registras y puedes añadir tareas pendientes y eliminarlas.
+    - Pagina web en la que te registras y puedes añadir tareas pendientes, modificarlas y eliminarlas.
 
 ## Demo
 
@@ -31,3 +31,4 @@
 ## A destacar
 
     Los puntos fuertes de esta pagina web es la gestion con back-end para poder guardar y recopilar todas las tareas registradas de cada usuario.
+    Añadido logOut, donde se borra el token del usuario de la BBDD y las cookies.

@@ -145,7 +145,9 @@ function modifyRow(id) {
 						"../detalle/detalle.html?id=" +
 							response[0].id +
 							"&idlist=" +
-							getParam("id")
+							getParam("id") +
+							"&nombre=" +
+							getParam("nombre")
 					);
 				}
 			}
