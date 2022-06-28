@@ -113,7 +113,11 @@ Documento aparte
   - Tipo de lenguaje a tratar
   - Descripcion
 - Eliminar tarea
-  ### explicaopn de los casos de uso
+- Modificar tarea
+- Logout
+
+  ### Explicaopn de los casos de uso
+
 - #### Caso de uso "Registrar usuario"
 
   1. Añadir nombre, email, telefono y password para registrarse. Si la informacion es correcta enviara un email de confirmacion a la misma cuenta de email y asi el usuario estara registrado.
@@ -125,3 +129,11 @@ Documento aparte
 - #### Caso de uso "Eliminar tarea"
 
   1. Eliminar la tarea seleccionada.
+
+- #### Caso de uso "Modificar tarea"
+
+  1. Modifica la tarea seleccionada, en la pagina de detalle.
+
+- #### Caso de uso "Logout"
+
+  1. Vuelve a la pagina principal y elimina el token de la tabla usuarios de la base de datos y las cookies de ese mismo usuario.
