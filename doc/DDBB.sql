@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.7.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 28, 2022 at 08:42 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Host: sql11.freemysqlhosting.net
+-- Generation Time: Jun 28, 2022 at 10:43 AM
+-- Server version: 5.5.62-0ubuntu0.14.04.1
+-- PHP Version: 7.0.33-0ubuntu0.16.04.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pbd`
+-- Database: `sql11502507`
 --
 
 -- --------------------------------------------------------
@@ -40,9 +41,9 @@ CREATE TABLE `listaobjetos` (
 --
 
 INSERT INTO `listaobjetos` (`id`, `idlist`, `task`, `lenguage`, `descripcion`) VALUES
-(128, 0, '', '', ''),
-(131, 0, '', '', ''),
-(150, 4, 'asdasdasdasd', 'asdASD', 'ASDASDsssssssssssssssssssssssssssssssssssssssssss2222222swwewewewe');
+(152, 5, 'asdasdasdddddddd', 'asdasd', 'asdasdasdasd'),
+(154, 5, 'aasdasd', 'asdasd', 'asdasdasdasdasdasd'),
+(155, 5, 'asdasd', 'asdasd', 'asdasdasdasdasd');
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,7 @@ CREATE TABLE `listas` (
 --
 
 INSERT INTO `listas` (`id`, `iduser`, `tablename`) VALUES
-(4, 70, 'Hosni Marco');
+(5, 71, 'Hosni Marco');
 
 -- --------------------------------------------------------
 
@@ -75,15 +76,16 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(30) NOT NULL,
   `phone` int(9) NOT NULL,
   `password` char(32) CHARACTER SET latin1 NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `token` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `email`, `nombre`, `phone`, `password`, `reg_date`) VALUES
-(70, 'hosni.marco@gmail.com', 'Hosni Marco', 659376740, '74b87337454200d4d33f80c4663dc5e5', '2022-06-23 09:44:52');
+INSERT INTO `usuarios` (`id`, `email`, `nombre`, `phone`, `password`, `reg_date`, `token`) VALUES
+(71, 'hosni.marco@gmail.com', 'Hosni Marco', 659376740, '74b87337454200d4d33f80c4663dc5e5', '2022-06-28 10:03:14', '');
 
 -- --------------------------------------------------------
 
@@ -97,7 +99,7 @@ CREATE TABLE `usuarios_temp` (
   `nombre` varchar(30) NOT NULL,
   `phone` int(9) NOT NULL,
   `password` char(32) CHARACTER SET latin1 NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -105,7 +107,7 @@ CREATE TABLE `usuarios_temp` (
 --
 
 INSERT INTO `usuarios_temp` (`id`, `email`, `nombre`, `phone`, `password`, `reg_date`) VALUES
-(91, 'hosni.marc3o@gmail.com', 'wwww', 659376740, 'e34a8899ef6468b74f8a1048419ccc8b', '2022-06-23 09:51:20');
+(92, 'asdasd@gmail.com', 'asdasdasd', 123123123, 'a8f5f167f44f4964e6c998dee827110c', '2022-06-28 07:10:16');
 
 --
 -- Indexes for dumped tables
@@ -143,26 +145,22 @@ ALTER TABLE `usuarios_temp`
 -- AUTO_INCREMENT for table `listaobjetos`
 --
 ALTER TABLE `listaobjetos`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
-
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 --
 -- AUTO_INCREMENT for table `listas`
 --
 ALTER TABLE `listas`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `usuarios_temp`
 --
 ALTER TABLE `usuarios_temp`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
-COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

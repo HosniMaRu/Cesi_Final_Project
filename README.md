@@ -64,7 +64,7 @@ AJAX
 
 ## Base de datos
 
-[BBDD](./doc/pbd.sql) - Export de la base de datos: phpMyAdmin SQL Dump
+[BBDD](./doc/DDBB.sql) - Export de la base de datos: phpMyAdmin SQL Dump
 
     - phpmyadmin
     - Nombre DDBB: pbd
