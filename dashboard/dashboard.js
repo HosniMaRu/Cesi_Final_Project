@@ -224,7 +224,7 @@ function goHome() {
 					console.warn("OK");
 					console.log(response);
 					console.log("response");
-					deleteCookie();
+					deleteCookie(response);
 				}
 			}
 		},
@@ -234,14 +234,12 @@ function goHome() {
 		},
 	});
 }
-function deleteCookie() {
+function deleteCookie(user) {
 	document.cookie =
 		"email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/login;";
 	document.cookie =
 		"nombre=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/login;";
 	document.cookie =
 		"token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/login;";
-	window.location.replace(
-		"../dashboard/dashboard.html?id=" + user.id + "nombre=" + user.nombre
-	);
+	window.location.replace("../index.html");
 }

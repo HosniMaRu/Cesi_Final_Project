@@ -76,4 +76,10 @@ label {
 	label {
 		width: fit-content;
 	}
+	.log_buttons {
+		flex-direction: column;
+	}
+	.log_buttons button {
+		margin: 1vh 0;
+	}
 }
